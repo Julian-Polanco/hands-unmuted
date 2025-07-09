@@ -209,4 +209,6 @@ __marimo__/
 # Miscellaneous
 *.zip
 *.jpg
+*.jpeg
+*.keras
 .DS_Store
