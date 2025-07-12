@@ -212,3 +212,5 @@ __marimo__/
 *.jpeg
 *.keras
 .DS_Store
+*.png
+*.csv
