@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block titutlo %}
+  <title>API Model Bootcamp</title>
+{% endblock %}
+
+{% block contenido %}
+<section class="container">
+  <div class="row">
+    <h1 class="display-3">{{ title }}</h2>
+    <h3 class="display-2">Hola Estudiantes de {{ bootcamp }}</h1>
+    <hr>
+    <h4 class="display-4">Autor {{author}} </h3>
+    <p>Esta es una API para gestionar modelos de machine learning.</p>
+    version: {{ version }}
+  </div>
+</section>
+{% endblock %}
