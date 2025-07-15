@@ -1,0 +1,53 @@
+/* styles.css */
+body {
+  /* background-color: #AA8ED6 !important; */
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0.9) 100%), /* Gradiente horizontal para oscurecer los lados */
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%), /* Efecto viñeta radial */
+    url('../images/background.png'); /* Tu imagen de fondo */
+  background-size: contain; /* Cambiado de cover a contain */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #000; /* Color de fondo negro para los espacios vacíos */
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-container {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  color: #000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btnsuccess {
+  background-color: rgba(53, 161, 244, 0.8);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  font-weight: normal;
+  font-size: 14px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.btnsuccess:hover {
+  background-color: rgba(53, 161, 244, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(53, 161, 244, 0.4);
+}
+
+.titulo-negrita {
+  font-weight: bold;
+}

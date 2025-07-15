@@ -215,3 +215,4 @@ __marimo__/
 .DS_Store
 *.png
 *.csv
+!src/web/api/templates/core/images/background.png

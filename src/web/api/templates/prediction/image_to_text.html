@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% block titutlo %}
+  <title>Lenguaje de Señas a Texto</title>
+{% endblock %}
+
+{% block contenido %}
+<div class="container">
+  <div class="row justify-content-center align-items-center min-vh-100">
+    <div class="col-md-8 bg-light p-5 rounded">
+      <h1 class="text-center mb-4">Traductor de Lenguaje de Señas a Texto</h1>
+      <p class="text-center">Sube una imagen de una seña (letra del abecedario ASL) para obtener su traducción.</p>
+      
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          {{ form.image.label_tag }}
+          {{ form.image }}
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Predecir</button>
+        </div>
+      </form>
+
+      {% if prediction %}
+        <div class="mt-5 text-center">
+          <h2>Resultado</h2>
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <img src="{{ image_url }}" class="img-fluid rounded" alt="Imagen subida">
+            </div>
+            <div class="col-md-6">
+              <div class="alert alert-success">
+                <p class="fs-4">La letra es: <strong>{{ prediction }}</strong></p>
+                <p class="fs-5">Confianza: <strong>{{ confidence }}</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      <div class="text-center mt-4">
+        <a href="{% url 'home' %}" class="btn btn-secondary">Volver al Inicio</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

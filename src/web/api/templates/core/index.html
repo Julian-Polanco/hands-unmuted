@@ -5,14 +5,24 @@
 {% endblock %}
 
 {% block contenido %}
-<section class="container">
-  <div class="row">
-    <h1 class="display-3">{{ title }}</h2>
-    <h3 class="display-2">Hola Estudiantes de {{ bootcamp }}</h1>
-    <hr>
-    <h4 class="display-4">Autor {{author}} </h3>
-    <p>Esta es una API para gestionar modelos de machine learning.</p>
-    version: {{ version }}
+<div class="container p-5 w-25 d-flex align-items-center justify-content-center glass-container my-5 rounded border rounded-5">
+  <div>
+    <div class="text-center mb-5">
+      <h1 class="titulo-negrita">Hands Unmuted</h1>
+    </div>
+    
+    <div class="row gx-5">
+      <div class="col-md-6 mb-3 mb-md-0">
+        <div class="d-grid">
+          <a href="#" class="btn btnsuccess btn-lg p-4 titulo-negrita rounded border rounded-5">Texto a Lenguaje de señas</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-grid">
+          <a href="{% url 'prediction:hands_unmuted' %}" class="btn btnsuccess btn-lg p-4 titulo-negrita rounded border rounded-5">Lenguaje de señas a Texto</a>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
+</div>
 {% endblock %}
