@@ -5,42 +5,75 @@
 {% endblock %}
 
 {% block contenido %}
-<div class="container">
-  <div class="row justify-content-center align-items-center min-vh-100">
-    <div class="col-md-8 bg-light p-5 rounded">
-      <h1 class="text-center mb-4">Traductor de Lenguaje de Señas a Texto</h1>
-      <p class="text-center">Sube una imagen de una seña (letra del abecedario ASL) para obtener su traducción.</p>
-      
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="mb-3">
-          {{ form.image.label_tag }}
-          {{ form.image }}
-        </div>
-        <div class="d-grid">
-          <button type="submit" class="btn btn-primary">Predecir</button>
-        </div>
-      </form>
+<div class="container p-5 w-75 d-flex align-items-center justify-content-center glass-container my-5 rounded border rounded-5">
+  <div class="w-100">
+    <h1 class="text-center mb-4 titulo-negrita text-light">Traductor de Lenguaje de Señas a Texto</h1>
+    <p class="text-center mb-4 glass-text text-light">Sube una o múltiples imágenes de señas (letras del abecedario ASL) para obtener su traducción.</p>
+    
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3 text-light">
+        {{ form.images.label_tag }}
+        {{ form.images }}
+        <div class="form-text glass-text text-light">Puedes seleccionar múltiples imágenes manteniendo presionado Ctrl (Windows/Linux) o Cmd (Mac)</div>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn mx-auto w-50 btn-lg p-3 titulo-negrita rounded border rounded-5 text-light">Predecir Todas</button>
+      </div>
+    </form>
 
-      {% if prediction %}
-        <div class="mt-5 text-center">
-          <h2>Resultado</h2>
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <img src="{{ image_url }}" class="img-fluid rounded" alt="Imagen subida">
-            </div>
-            <div class="col-md-6">
-              <div class="alert alert-success">
-                <p class="fs-4">La letra es: <strong>{{ prediction }}</strong></p>
-                <p class="fs-5">Confianza: <strong>{{ confidence }}</strong></p>
+    {% if results %}
+      <div class="mt-5">
+        <h2 class="text-center titulo-negrita glass-text mb-4">Resultados ({{ total_images }} imagen{{ total_images|pluralize:"es" }})</h2>
+        
+        <div class="row">
+          {% for result in results %}
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="glass-alert p-4 rounded-5">
+                {% if result.success %}
+                  <div class="text-center mb-3">
+                    <img src="{{ result.image_url }}" class="img-fluid rounded-5 glass-image" alt="{{ result.image_name }}" style="max-height: 200px;">
+                  </div>
+                  <h5 class="text-center glass-text titulo-negrita">{{ result.image_name }}</h5>
+                  <div class="text-center">
+                    <p class="fs-5 glass-text mb-2">Letra: <strong class="titulo-negrita">{{ result.prediction }}</strong></p>
+                    <p class="fs-6 glass-text">Confianza: <strong>{{ result.confidence }}</strong></p>
+                  </div>
+                {% else %}
+                  <div class="text-center">
+                    <h5 class="glass-text titulo-negrita text-danger">{{ result.image_name }}</h5>
+                    <p class="glass-text text-danger">Error: {{ result.error }}</p>
+                  </div>
+                {% endif %}
               </div>
+            </div>
+          {% endfor %}
+        </div>
+        
+        <!-- Resumen de resultados -->
+        <div class="mt-4 glass-container p-4 rounded-5">
+          <h4 class="text-center glass-text titulo-negrita">Resumen</h4>
+          <div class="row text-center">
+            <div class="col-md-3">
+              <p class="glass-text">Total: <strong>{{ total_images }}</strong></p>
+            </div>
+            <div class="col-md-3">
+              <p class="glass-text">Exitosas: <strong>{{ successful_predictions }}</strong></p>
+            </div>
+            <div class="col-md-3">
+              <p class="glass-text">Fallidas: <strong>{{ total_images|add:"-"|add:successful_predictions }}</strong></p>
+            </div>
+            <div class="col-md-3">
+              <p class="glass-text">Palabra: <strong>{{ word_formed|default:"N/A" }}</strong></p>
             </div>
           </div>
         </div>
-      {% endif %}
-      <div class="text-center mt-4">
-        <a href="{% url 'home' %}" class="btn btn-secondary">Volver al Inicio</a>
       </div>
+    {% endif %}
+    
+    <div class="text-center mt-4">
+      <a href="{% url 'home' %}" class="btn btnsuccess btn-lg p-3 titulo-negrita rounded border rounded-5 me-2">Volver al Inicio</a>
+      <a href="{% url 'prediction:single_prediction' %}" class="btn btnsuccess btn-lg p-3 titulo-negrita rounded border rounded-5">Imagen Individual</a>
     </div>
   </div>
 </div>

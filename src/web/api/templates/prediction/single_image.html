@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% block titutlo %}
+  <title>Predicción Individual</title>
+{% endblock %}
+
+{% block contenido %}
+<div class="container p-5 w-75 d-flex align-items-center justify-content-center glass-container my-5 rounded border rounded-5">
+  <div class="w-100 text-light">
+    <h1 class="text-center mb-4 titulo-negrita text-light">Predicción Individual</h1>
+    <p class="text-center mb-4 glass-text">Sube una imagen de una seña para obtener su traducción.</p>
+    
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        {{ form.image.label_tag }}
+        {{ form.image }}
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-lg p-3 titulo-negrita rounded border rounded-5 w-50 mx-auto">Predecir</button>
+      </div>
+    </form>
+
+    {% if prediction %}
+      <div class="mt-5 text-center">
+        <h2 class="titulo-negrita glass-text">Resultado</h2>
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <img src="{{ image_url }}" class="img-fluid rounded-5 glass-image" alt="Imagen subida">
+          </div>
+          <div class="col-md-6">
+            <div class="glass-alert p-4 rounded-5">
+              <p class="fs-4 glass-text">La letra es: <strong class="titulo-negrita">{{ prediction }}</strong></p>
+              <p class="fs-5 glass-text">Confianza: <strong class="titulo-negrita">{{ confidence }}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    
+    <div class="text-center mt-4">
+      <a href="{% url 'home' %}" class="btn btnsuccess btn-lg p-3 titulo-negrita rounded border rounded-5 me-2">Volver al Inicio</a>
+      <a href="{% url 'prediction:hands_unmuted' %}" class="btn btnsuccess btn-lg p-3 titulo-negrita rounded border rounded-5">Múltiples Imágenes</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

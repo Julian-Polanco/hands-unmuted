@@ -216,3 +216,5 @@ __marimo__/
 *.png
 *.csv
 !src/web/api/templates/core/images/background.png
+!src/web/api/templates/core/images/background.png
+!src/web/api/media/input/*

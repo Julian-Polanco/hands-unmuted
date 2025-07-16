@@ -1,0 +1,106 @@
+{% extends 'core/base.html' %}
+
+{% block titutlo %}
+  <title>Texto a Lenguaje de Señas</title>
+{% endblock %}
+
+{% block contenido %}
+<div class="container p-5 w-75 d-flex align-items-center justify-content-center glass-container my-5 rounded border rounded-5">
+  <div class="w-100">
+    <h1 class="text-center mb-4 titulo-negrita text-light">Texto a Lenguaje de Señas</h1>
+    <p class="text-center mb-4 glass-text text-light">Escribe una palabra o frase para ver su representación en lenguaje de señas ASL.</p>
+    
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        {{ form.text.label_tag }}
+        {{ form.text }}
+        <div class="form-text glass-text text-light">Solo se mostrarán las letras del alfabeto (A-Z)</div>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btnsuccess btn-lg p-3 titulo-negrita rounded border rounded-5">Convertir a Señas</button>
+      </div>
+    </form>
+
+    {% if results %}
+      <div class="mt-5">
+        <h2 class="text-center titulo-negrita text-light glass-text mb-4">Resultado: "{{ original_text }}"</h2>
+        
+        <!-- Mostrar las señas en una fila horizontal -->
+        <div class="d-flex flex-wrap justify-content-center align-items-center mb-4" style="gap: 15px;">
+          {% for result in results %}
+            {% if result.is_space %}
+              <div class="text-center text-light">
+                <div style="width: 30px; height: 100px; display: flex; align-items: center; justify-content: center;">
+                  <span class="glass-text fs-3 text-light">|</span>
+                </div>
+                <small class="glass-text text-light">espacio</small>
+              </div>
+            {% elif result.found %}
+              <div class="text-center">
+                <img src="{{ result.image_url }}" class="img-fluid rounded-3 glass-image" alt="Letra {{ result.letter }}" style="max-height: 100px; max-width: 100px;">
+                <div class="mt-2">
+                  <strong class="glass-text fs-5 text-light">{{ result.letter }}</strong>
+                </div>
+              </div>
+            {% else %}
+              <div class="text-center">
+                <div class="d-flex align-items-center justify-content-center glass-alert rounded-3" style="width: 100px; height: 100px;">
+                  <span class="glass-text fs-4 text-light">{{ result.letter }}</span>
+                </div>
+                <div class="mt-2">
+                  <small class="glass-text text-warning text-light">No encontrada</small>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        
+        <!-- Información detallada por letra -->
+        <div class="row">
+          {% for result in results %}
+            {% if result.letter != ' ' %}
+              <div class="col-md-6 col-lg-3 mb-3">
+                <div class="glass-alert p-3 rounded-5 text-center">
+                  {% if result.found %}
+                    <img src="{{ result.image_url }}" class="img-fluid rounded-3 glass-image mb-2" alt="Letra {{ result.letter }}" style="max-height: 80px;">
+                    <h5 class="glass-text titulo-negrita text-light">{{ result.letter }}</h5>
+                    <small class="glass-text text-light">{{ result.image_name }}</small>
+                  {% else %}
+                    <div class="d-flex align-items-center justify-content-center mb-2" style="height: 80px;">
+                      <span class="glass-text fs-2 text-light">{{ result.letter }}</span>
+                    </div>
+                    <h5 class="glass-text titulo-negrita text-warning">{{ result.letter }}</h5>
+                    <small class="glass-text text-warning">Imagen no disponible</small>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        
+        <!-- Resumen -->
+        <div class="mt-4 glass-container p-4 rounded-5">
+          <h4 class="text-center glass-text titulo-negrita">Resumen</h4>
+          <div class="row text-center">
+            <div class="col-md-4">
+              <p class="glass-text">Texto: <strong>"{{ original_text }}"</strong></p>
+            </div>
+            <div class="col-md-4">
+              <p class="glass-text">Letras totales: <strong>{{ total_letters }}</strong></p>
+            </div>
+            <div class="col-md-4">
+              <p class="glass-text">Imágenes encontradas: <strong>{{ found_letters }}/{{ total_letters }}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    
+    <div class="text-center mt-4">
+      <a href="{% url 'home' %}" class="btn btnsuccess btn-lg p-3 titulo-negrita rounded border rounded-5 me-2">Volver al Inicio</a>
+      <a href="{% url 'prediction:hands_unmuted' %}" class="btn btnsuccess btn-lg p-3 titulo-negrita rounded border rounded-5">Señas a Texto</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
