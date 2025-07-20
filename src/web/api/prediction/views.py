@@ -5,6 +5,8 @@ from .model_handler import predict_image
 from django.conf import settings
 import os
 import json
+from unidecode import unidecode  # <-- 1. Importa la biblioteca
+
 
 def prediction_view(request):
     if request.method == 'POST':
@@ -62,6 +64,7 @@ def prediction_view(request):
 
             # Formar palabra con las predicciones exitosas
             word_formed = ''.join([result['prediction'] for result in results if result['success']])
+            word_formed = word_formed.replace('space', ' ')
             
             return render(request, 'prediction/image_to_text.html', {
                 'form': form,
@@ -128,7 +131,8 @@ def text_to_signs_view(request):
     if request.method == 'POST':
         form = TextToSignsForm(request.POST)
         if form.is_valid():
-            text = form.cleaned_data['text'].upper().strip()
+            original_text = form.cleaned_data['text'].upper().strip()
+            text = unidecode(original_text).upper()
             results = []
             
             # Directorio donde están las imágenes de referencia

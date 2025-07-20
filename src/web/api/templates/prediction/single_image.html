@@ -17,7 +17,7 @@
         {{ form.image }}
       </div>
       <div class="d-grid">
-        <button type="submit" class="btn btn-lg p-3 titulo-negrita rounded border rounded-5 w-50 mx-auto">Predecir</button>
+        <button type="submit" class="btn mx-auto w-50 btn-lg p-3 titulo-negrita rounded border rounded-5 text-light">Predecir</button>
       </div>
     </form>
 
@@ -39,8 +39,8 @@
     {% endif %}
     
     <div class="text-center mt-4">
-      <a href="{% url 'home' %}" class="btn btnsuccess btn-lg p-3 titulo-negrita rounded border rounded-5 me-2">Volver al Inicio</a>
-      <a href="{% url 'prediction:hands_unmuted' %}" class="btn btnsuccess btn-lg p-3 titulo-negrita rounded border rounded-5">Múltiples Imágenes</a>
+      <a href="{% url 'home' %}" class="btn btn-outline-light btn-lg p-3 titulo-negrita rounded border rounded-5 me-2">Volver al Inicio</a>
+      <a href="{% url 'prediction:hands_unmuted' %}" class="btn btn-outline-light btn-lg p-3 titulo-negrita rounded border rounded-5">Múltiples Imágenes</a>
     </div>
   </div>
 </div>

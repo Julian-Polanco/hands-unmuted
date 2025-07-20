@@ -1,25 +1,27 @@
 {% extends 'core/base.html' %}
 
 {% block tittle %}
-  API Model Bootcamp
+  Hands Unmuted
 {% endblock %}
 
 {% block contenido %}
-<div class="container p-5 w-25 d-flex align-items-center justify-content-center glass-container my-5 rounded border rounded-5">
-  <div>
-    <div class="text-center mb-5">
+<div class="container my-5">
+  <div class="glass-container p-4 p-md-5 rounded-5 border">
+    <div class="text-center mb-4">
       <h1 class="titulo-negrita">Hands Unmuted</h1>
-    </div>
-    
-    <div class="row gx-5">
-      <div class="col-md-6 mb-3 mb-md-0">
+    </div>s    
+        <!-- Contenedor de botones mejorado -->
+    <div class="row g-3 justify-content-center">
+      <!-- Botón 1 -->
+      <div class="col-12 col-md-6">
         <div class="d-grid">
-          <a href="{% url 'prediction:text_to_signs' %}" class="btn btnsuccess btn-lg p-4 titulo-negrita rounded border rounded-5">Texto a Lenguaje de señas</a>
+          <a href="{% url 'prediction:text_to_signs' %}" class="btn btn-outline-light btn-lg p-3 titulo-negrita rounded-pill shadow-sm">Texto a Lenguaje de señas</a>
         </div>
       </div>
-      <div class="col-md-6">
+      <!-- Botón 2 -->
+      <div class="col-12 col-md-6">
         <div class="d-grid">
-          <a href="{% url 'prediction:hands_unmuted' %}" class="btn btnsuccess btn-lg p-4 titulo-negrita rounded border rounded-5">Lenguaje de señas a Texto</a>
+          <a href="{% url 'prediction:hands_unmuted' %}" class="btn btn-outline-light btn-lg p-3 titulo-negrita rounded-pill shadow-sm">Lenguaje de señas a Texto</a>
         </div>
       </div>
     </div>

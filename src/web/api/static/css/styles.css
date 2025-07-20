@@ -1,0 +1,181 @@
+/* styles.css */
+body {
+  /* background-color: #AA8ED6 !important; */
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0.9) 100%), /* Gradiente horizontal para oscurecer los lados */
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%), /* Efecto viñeta radial */
+  url('../images/background.png'); /* Tu imagen de fondo */
+  background-size: contain; /* Cambiado de cover a contain */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #000; /* Color de fondo negro para los espacios vacíos */
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-container {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Alerta con efecto glass */
+.glass-alert {
+  background: rgba(40, 167, 69, 0.2) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.glass-alert:hover {
+  transform: translateY(-5px);
+}
+
+/* Texto con mejor contraste */
+.glass-text {
+  color: #fff !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Imagen con efecto glass */
+.glass-image {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  color: #fff !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+h2 {
+  color: #fff !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.btnsuccess {
+  background-color: rgba(53, 161, 244, 0.8);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  font-weight: normal;
+  font-size: 14px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.btnsuccess:hover {
+  background-color: rgba(53, 161, 244, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(53, 161, 244, 0.4);
+}
+
+.titulo-negrita {
+  font-weight: bold;
+}
+
+/* Estilo para inputs de archivo (tanto múltiple como individual) */
+input[type="file"] {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 20px;
+  color: #fff;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  text-align: center;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+input[type="file"]:hover {
+  border-color: rgba(53, 161, 244, 0.6);
+  background: rgba(53, 161, 244, 0.1);
+}
+
+/* Estilo específico para inputs múltiples */
+input[type="file"][multiple] {
+  min-height: 80px;
+}
+
+.form-text {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+label {
+  color: #fff !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Estilo para el widget ClearableFileInput */
+.clearableinput {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.clearableinput input[type="file"] {
+  margin-bottom: 5px;
+}
+
+.clearableinput input[type="checkbox"] {
+  margin-right: 5px;
+}
+/* ...existing code... */
+
+/* Estilo para input de texto */
+input[type="text"] {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 15px;
+  color: #fff;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: rgba(53, 161, 244, 0.6);
+  background: rgba(53, 161, 244, 0.1);
+  outline: none;
+  box-shadow: 0 0 10px rgba(53, 161, 244, 0.3);
+}
+
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Espaciado para las imágenes de señas */
+.signs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-item {
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.sign-item:hover {
+  transform: scale(1.05);
+}
+
+/* ...existing code... */

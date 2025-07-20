@@ -2,7 +2,7 @@ from tensorflow import keras
 import numpy as np
 from tensorflow.keras.preprocessing import image
 
-FILE_PATH = "../../models/best_asl_model.keras"
+FILE_PATH = "/models/best_asl_model.keras"
 
 train_generator_predict = {
     "A": 0,

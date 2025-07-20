@@ -7,3 +7,6 @@ dotenv
 numpy
 tensorflow
 pillow
+gunicorn
+whitenoise
+unidecode

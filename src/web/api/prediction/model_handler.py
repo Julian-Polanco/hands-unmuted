@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing import image
 from django.conf import settings
 
 # Construir la ruta absoluta al modelo
-FILE_PATH = os.path.join(settings.BASE_DIR, '..', '..', '..', 'models', 'best_asl_model.keras')
+FILE_PATH = os.path.join(settings.BASE_DIR, 'models', 'best_asl_model.keras')
 
 CLASS_INDICES = {
     "A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6, "H": 7,
